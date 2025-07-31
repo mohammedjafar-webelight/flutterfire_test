@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "149854911005",
+    "project_id": "with-flutterfire-2c0b1",
+    "storage_bucket": "with-flutterfire-2c0b1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:149854911005:android:1b259b2ae2bc67c50924f4",
+        "android_client_info": {
+          "package_name": "com.example.flutterfire_test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1_cGvAVV2C9zr_o69DII6ARfNyI33q10"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
