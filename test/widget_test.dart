@@ -7,24 +7,32 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 
-import 'package:flutterfire_test/main.dart';
+import 'package:flutterfire_test/task_app.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Task app smoke test', (WidgetTester tester) async {
+    // Create fake Firestore for testing
+    final firestore = FakeFirebaseFirestore();
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(MaterialApp(home: TaskHomePage(firestore: firestore)));
+
+    // Wait for the stream to initialize
+    await tester.idle();
+    await tester.pump();
+
+    // Verify that our app shows the empty state initially.
+    expect(find.text('No tasks yet. Tap + to add one!'), findsOneWidget);
 
     // Tap the '+' icon and trigger a frame.
     await tester.tap(find.byIcon(Icons.add));
     await tester.pump();
+    await tester.idle();
+    await tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify that a new task was added.
+    expect(find.text('New Task'), findsOneWidget);
   });
 }
